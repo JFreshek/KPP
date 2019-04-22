@@ -22,9 +22,11 @@ public class Matrix {
 	}
 
 	public int getMinor(int line, int column) {
+		int minorLineNumber = 2;
+		int minorColumnNumber = 2;
 		int minor;
 		int k = 0, q = 0;
-		int buffer[][] = new int[2][2];
+		int buffer[][] = new int[minorLineNumber][minorColumnNumber];
 		for (int i = 0; i < linesNum; ++i) {
 			if (i != line - 1) {
 				for (int j = 0; j < columnsNum; ++j) {
