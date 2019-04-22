@@ -3,6 +3,7 @@ package ui;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -87,9 +88,12 @@ public class MatrixWindow {
 				public void handle(ActionEvent event) {
 					mtrxInitialization(mtrx, a11, a12, a13, a21, a22, a23, a31, a32, a33);
 					try {
-						int algAddition11 = executor.submit(new Ñalculator(mtrx, 1, 1)).get();
-						int algAddition12 = executor.submit(new Ñalculator(mtrx, 1, 2)).get();
-						int algAddition13 = executor.submit(new Ñalculator(mtrx, 1, 3)).get();
+						Future<Integer> calculatorAlgAdd11 = executor.submit(new Ñalculator(mtrx, 1, 1));
+						Future<Integer> calculatorAlgAdd12 = executor.submit(new Ñalculator(mtrx, 1, 2));
+						Future<Integer> calculatorAlgAdd13 = executor.submit(new Ñalculator(mtrx, 1, 3));
+						int algAddition11 = calculatorAlgAdd11.get();
+						int algAddition12 = calculatorAlgAdd12.get();
+						int algAddition13 = calculatorAlgAdd13.get();
 						labelDet.setText("det = " + mtrx.getDeterminant(algAddition11, algAddition12, algAddition13));
 						labelA11.setText("A11 = " + algAddition11);
 						labelA12.setText("A12 = " + algAddition12);
